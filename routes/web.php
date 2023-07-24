@@ -41,7 +41,7 @@ Route::get('/user', [UserController::class, 'index']) ->name('user.index');
 Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
 Route::post('/user', [UserController::class, 'store'])->name('user.store');
 Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update'); 
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 
 Route::get('/role', [RoleController::class, 'index']) ->name('role.index');
@@ -51,7 +51,7 @@ Route::get('/monitoringkinerja', [MonitoringKinerjaController::class, 'index']) 
 Route::get('/monitoringkinerja/create', [MonitoringKinerjaController::class, 'create'])->name('monitoringkinerja.create');
 Route::post('/monitoringkinerja', [MonitoringKinerjaController::class, 'store'])->name('monitoringkinerja.store');
 Route::get('/monitoringkinerja/edit/{id}', [MonitoringKinerjaController::class, 'edit'])->name('monitoringkinerja.edit');
-Route::put('/monitoringkinerja/{id}', [MonitoringKinerjaController::class, 'update'])->name('monitoringkinerja.update'); 
+Route::put('/monitoringkinerja/{id}', [MonitoringKinerjaController::class, 'update'])->name('monitoringkinerja.update');
 Route::delete('/monitoringkinerja/{id}', [MonitoringKinerjaController::class, 'destroy'])->name('monitoringkinerja.destroy');
 
 });
