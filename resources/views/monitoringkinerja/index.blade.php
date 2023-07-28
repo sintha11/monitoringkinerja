@@ -27,7 +27,7 @@
         position: absolute !important;
         z-index: 1;
         top: -140px;
-        left: 265px;
+        left: 1200px;
         background-color: #6C757D !important;
         border: 1px white !important;
         color: white !important;
