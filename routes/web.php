@@ -22,7 +22,7 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', function () {
     return view('landing');
-});
+})->name('landing');
 
 Route::get('/register', [RegisterController::class, 'index']) ->name('register');
 Route::post('/register', [RegisterController::class, 'store']) ->name('register.store');

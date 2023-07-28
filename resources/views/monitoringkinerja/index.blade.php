@@ -2,6 +2,14 @@
 
 @section('content')
   <main>
+    <!-- datatable style -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+    <!-- bootstrap 4 css  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <!-- css tambahan  -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+
     <style>
       .datatable-top {
         display: none;
@@ -14,8 +22,18 @@
       .dataTables_filter {
         display: none;
       }
+
+      .dt-button {
+        position: absolute !important;
+        z-index: 1;
+        top: -140px;
+        left: 265px;
+        background-color: #6C757D !important;
+        border: 1px white !important;
+        color: white !important;
+        border-radius: 5px !important;
+      }
     </style>
-    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css">
     <div class="container-fluid px-4">
       <h1 class="mt-4">Monitoring Kinerja</h1>
 
@@ -55,6 +73,7 @@
               <tr>
                 <th>Indikator Kinerja</th>
                 <th>Program Kegiatan</th>
+                <th>Tanggal</th>
                 <th>Target Kinerja</th>
                 <th>Realisasi Kinerja</th>
                 <th>Capaian Kinerja</th>
@@ -65,25 +84,34 @@
           </table>
         </div>
 
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
-        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css">
-        <script src="https://code.jquery.com/jquery.js"></script>
-        <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
-        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
+        <!-- jquery -->
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <!-- jquery datatable -->
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+        <!-- script tambahan  -->
+        <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-        <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js   "></script>
-        <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+        <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+
         <script>
           $(function() {
             let bulan = $("#filter-bulan").val()
             var i = 1;
 
             const table = $('#datatablesSimple').DataTable({
+              dom: 'Bfrtip',
+              buttons: [{
+                extend: 'print',
+                exportOptions: {
+                  columns: [0, 1, 2, 3, 4, "visible"]
+                }
+              }],
               paging: false,
-              processing: true,
+              processing: false,
               serverSide: true,
               "ajax": {
                 url: '{!! route('monitoringkinerja.index') !!}',
@@ -95,30 +123,42 @@
               columns: [{
                   data: 'indikator_kinerja',
                   name: 'indikator_kinerja',
+                  orderable: false,
                 },
                 {
                   data: 'program_kegiatan',
                   name: 'program_kegiatan',
+                  orderable: false,
+                },
+                {
+                  data: 'tanggal',
+                  name: 'tanggal',
+                  orderable: false,
                 },
                 {
                   data: 'target_kinerja',
                   name: 'target_kinerja',
+                  orderable: false,
                 },
                 {
                   data: 'realisasi_kinerja',
                   name: 'realisasi_kinerja',
+                  orderable: false,
                 },
                 {
                   data: 'capaian_kinerja',
                   name: 'capaian_kinerja',
+                  orderable: false,
                 },
                 {
                   data: 'permasalahan',
                   name: 'permasalahan',
+                  orderable: false,
                 },
                 {
                   data: 'action',
                   name: 'action',
+                  orderable: false,
                 }
               ]
             });

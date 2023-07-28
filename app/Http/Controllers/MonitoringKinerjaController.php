@@ -21,7 +21,7 @@ class MonitoringKinerjaController extends Controller
             }
             return Datatables::of($query)
                     ->addColumn('action', function($data){
-   
+
                            $btn = '
                             <div class="dropdown p-3">
                                 <a class="btn btn-primary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -37,60 +37,59 @@ class MonitoringKinerjaController extends Controller
                                      </button>
                                     </form>
                                 </ul>
-                            </div>  
+                            </div>
 ';
-     
+
                             return $btn;
                     })
                     ->addColumn('indikator_kinerja', function($data){
-   
-                           $output = '<p class="text-start" style="width: 200px;">'.$data->indikator_kinerja.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 200px;">'.$data->indikator_kinerja.'</p>';
+
                             return $output;
                     })
                     ->addColumn('program_kegiatan', function($data){
-   
-                           $output = '<p class="text-start" style="width: 200px;">'.$data->program_kegiatan.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 200px;">'.$data->program_kegiatan.'</p>';
+
                             return $output;
                     })
                     ->addColumn('target_kinerja', function($data){
-   
-                           $output = '<p class="text-start" style="width: 150px;">'.$data->target_kinerja.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 50px;">'.$data->target_kinerja.'</p>';
+
                             return $output;
                     })
                     ->addColumn('realisasi_kinerja', function($data){
-   
-                           $output = '<p class="text-start" style="width: 150px;">'.$data->realisasi_kinerja.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 50px;">'.$data->realisasi_kinerja.'</p>';
+
                             return $output;
                     })
                     ->addColumn('capaian_kinerja', function($data){
-   
-                           $output = '<p class="text-start" style="width: 150px;">'.$data->capaian_kinerja.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 50px;">'.$data->capaian_kinerja.'</p>';
+
                             return $output;
                     })
                     ->addColumn('permasalahan', function($data){
-   
-                           $output = '<p class="text-start" style="width: 200px;">'.$data->permasalahan.'</p>';
-     
+
+                           $output = '<p class="text-start mt-4" style="width: 200px;">'.$data->permasalahan.'</p>';
+
                             return $output;
                     })
-                    ->addColumn('no', function($data){
-                            $i = 1;
-   
-                           $output = '<p class="text-start" style="width: 50px;">'.$i++.'</p>';
-     
+                    ->addColumn('tanggal', function($data){
+
+                           $output = '<p class="text-start mt-4" style="width: 120px;">'.Carbon::parse($data->created_at)->toFormattedDateString().'</p>';
+
                             return $output;
                     })
-                    ->rawColumns(['action', 'indikator_kinerja', 'program_kegiatan', 'target_kinerja', 'realisasi_kinerja', 'capaian_kinerja', 'permasalahan', 'no'])
+                    ->rawColumns(['action', 'indikator_kinerja', 'program_kegiatan', 'target_kinerja', 'realisasi_kinerja', 'capaian_kinerja', 'permasalahan', 'tanggal'])
                     ->make();
         }
-       
+
         return view('monitoringkinerja.index');
-        
+
     }
 
     public function create()
@@ -158,7 +157,7 @@ class MonitoringKinerjaController extends Controller
                 'realisasi_kinerja' => $request->realisasi_kinerja,
                 'capaian_kinerja' =>  $request->capaian_kinerja,
                 'permasalahan' => $request->permasalahan,
-                
+
             ]);
 
         // } else {
